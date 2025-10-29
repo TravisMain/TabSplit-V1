@@ -17,10 +17,23 @@
 </script>
   <!-- Add Babel Standalone for in-browser TSX/JSX transpilation -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    html, body, #root {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
 </head>
   <body>
     <div id="root"></div>
-    <!-- Changed script type to "text/babel" to be transpiled by Babel -->
-    <script type="text/babel" data-type="module" src="./index.tsx"></script>
+    <!--
+      The script is set to type="text/babel" to be processed by the Babel transpiler.
+      The data-presets attribute is crucial:
+      - "react": Enables the transformation of JSX syntax (<div />, etc.).
+      - "typescript": Enables the removal of TypeScript type annotations (e.g., :string, <Type>).
+      This setup allows you to write TSX code and have it run in the browser.
+    -->
+    <script type="text/babel" data-type="module" src="./index.tsx" data-presets="react,typescript"></script>
   </body>
 </html>
