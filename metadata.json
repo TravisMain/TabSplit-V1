@@ -1,0 +1,5 @@
+{
+  "name": "TabSplit",
+  "description": "An intelligent tab splitting application that uses AI to parse receipts and a chat interface to assign items to people. Upload a receipt, and chat with the AI to split the tab, with real-time updates on who owes what.",
+  "requestFramePermissions": []
+}
