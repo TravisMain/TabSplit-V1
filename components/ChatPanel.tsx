@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { ReceiptData, BillSplit, ChatMessage } from '../types';
-import { updateBillSplit } from '../services/geminiService';
-import { SendIcon, LogoIcon } from './icons';
+import { ReceiptData, BillSplit, ChatMessage } from '../types.ts';
+import { updateBillSplit } from '../services/geminiService.ts';
+import { SendIcon, LogoIcon } from './icons.tsx';
 
 interface ChatPanelProps {
   receiptData: ReceiptData | null;

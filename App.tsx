@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
-import { ReceiptData, BillSplit, ChatMessage } from './types';
-import ReceiptPanel from './components/ReceiptPanel';
-import ChatPanel from './components/ChatPanel';
-import { LogoIcon } from './components/icons';
+import { ReceiptData, BillSplit, ChatMessage } from './types.ts';
+import ReceiptPanel from './components/ReceiptPanel.tsx';
+import ChatPanel from './components/ChatPanel.tsx';
+import { LogoIcon } from './components/icons.tsx';
 
 const App: React.FC = () => {
   const [receiptData, setReceiptData] = useState<ReceiptData | null>(null);

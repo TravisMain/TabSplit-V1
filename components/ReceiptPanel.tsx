@@ -1,9 +1,9 @@
 
 import React, { useState, useMemo } from 'react';
-import { ReceiptData, BillSplit, ReceiptItem, PersonSplit, ChatMessage } from '../types';
-import { fileToBase64 } from '../utils/file';
-import { parseReceipt } from '../services/geminiService';
-import { UploadIcon, ReceiptIcon, CheckIcon, PlusCircleIcon, PencilIcon, XCircleIcon } from './icons';
+import { ReceiptData, BillSplit, ReceiptItem, PersonSplit, ChatMessage } from '../types.ts';
+import { fileToBase64 } from '../utils/file.ts';
+import { parseReceipt } from '../services/geminiService.ts';
+import { UploadIcon, ReceiptIcon, CheckIcon, PlusCircleIcon, PencilIcon, XCircleIcon } from './icons.tsx';
 
 interface ReceiptPanelProps {
   receiptData: ReceiptData | null;

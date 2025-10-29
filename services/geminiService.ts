@@ -1,6 +1,6 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
-import { ReceiptData, BillSplit, ReceiptItem } from '../types';
+import { ReceiptData, BillSplit, ReceiptItem } from '../types.ts';
 
 if (!process.env.API_KEY) {
   throw new Error("API_KEY environment variable is not set");
