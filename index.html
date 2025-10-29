@@ -15,9 +15,12 @@
   }
 }
 </script>
+  <!-- Add Babel Standalone for in-browser TSX/JSX transpilation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
+    <!-- Changed script type to "text/babel" to be transpiled by Babel -->
+    <script type="text/babel" data-type="module" src="./index.tsx"></script>
   </body>
 </html>
