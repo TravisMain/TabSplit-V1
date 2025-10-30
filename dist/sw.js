@@ -1,10 +1,8 @@
-const CACHE_NAME = 'tabsplit-v1';
+const CACHE_NAME = 'tabsplit-v2';
 const BASE_PATH = '/TabSplit-V1';
 const urlsToCache = [
   `${BASE_PATH}/`,
-  `${BASE_PATH}/index.html`,
-  `${BASE_PATH}/icon.svg`,
-  `${BASE_PATH}/metadata.json`
+  `${BASE_PATH}/index.html`
 ];
 
 self.addEventListener('install', event => {
@@ -23,6 +21,17 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  // Do not cache CDN requests (Tailwind, React, etc)
+  if (event.request.url.includes('cdn.tailwindcss.com') || 
+      event.request.url.includes('aistudiocdn.com')) {
+    return;
+  }
+
+  // Only cache same-origin requests
+  if (!event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(response => {
@@ -34,14 +43,11 @@ self.addEventListener('fetch', event => {
         return fetch(event.request).then(
           networkResponse => {
             // Check if we received a valid response
-            if (!networkResponse || networkResponse.status !== 200) {
+            if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
               return networkResponse;
             }
 
-            // IMPORTANT: Clone the response. A response is a stream
-            // and because we want the browser to consume the response
-            // as well as the cache consuming the response, we need
-            // to clone it so we have two streams.
+            // Clone the response for caching
             const responseToCache = networkResponse.clone();
 
             caches.open(CACHE_NAME)
@@ -51,12 +57,13 @@ self.addEventListener('fetch', event => {
 
             return networkResponse;
           }
-        );
+        ).catch(() => {
+          // If fetch fails, try to return cached response
+          return caches.match(event.request);
+        });
       })
-    );
-});
-
-// Clean up old caches on activation
+  );
+});// Clean up old caches on activation
 self.addEventListener('activate', event => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
