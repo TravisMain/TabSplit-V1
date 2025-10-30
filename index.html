@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="./icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TabSplit</title>
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="./manifest.json" />
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="TabSplit" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+
     <script src="https://cdn.tailwindcss.com"></script>
   <script type="importmap">
 {
@@ -15,25 +25,20 @@
   }
 }
 </script>
-  <!-- Add Babel Standalone for in-browser TSX/JSX transpilation -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <style>
-    html, body, #root {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-  </style>
 </head>
   <body>
     <div id="root"></div>
-    <!--
-      The script is set to type="text/babel" to be processed by the Babel transpiler.
-      The data-presets attribute is crucial:
-      - "react": Enables the transformation of JSX syntax (<div />, etc.).
-      - "typescript": Enables the removal of TypeScript type annotations (e.g., :string, <Type>).
-      This setup allows you to write TSX code and have it run in the browser.
-    -->
-    <script type="text/babel" data-type="module" src="./index.tsx" data-presets="react,typescript"></script>
+    <script type="module" src="./index.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').then(registration => {
+            console.log('ServiceWorker registered: ', registration);
+          }).catch(registrationError => {
+            console.log('ServiceWorker registration failed: ', registrationError);
+          });
+        });
+      }
+    </script>
   </body>
 </html>

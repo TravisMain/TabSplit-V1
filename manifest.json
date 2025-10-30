@@ -1,0 +1,16 @@
+{
+  "name": "TabSplit",
+  "short_name": "TabSplit",
+  "description": "An intelligent tab splitting application that uses AI to parse receipts and a chat interface to assign items to people. Upload a receipt, and chat with the AI to split the tab, with real-time updates on who owes what.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f1f5f9",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
