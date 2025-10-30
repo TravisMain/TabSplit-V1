@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/TabSplit-V1/assets/icon-DGXMhfOb.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TabSplit</title>
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/TabSplit-V1/assets/manifest-BWXvplAo.json" />
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="TabSplit" />
+    <link rel="apple-touch-icon" href="/TabSplit-V1/assets/icon-DGXMhfOb.svg" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.27.0"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/TabSplit-V1/assets/index-CxOdvy_E.js"></script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/TabSplit-V1/sw.js').then(registration => {
+            console.log('ServiceWorker registered: ', registration);
+          }).catch(registrationError => {
+            console.log('ServiceWorker registration failed: ', registrationError);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
