@@ -1,17 +1,10 @@
 const CACHE_NAME = 'tabsplit-v1';
+const BASE_PATH = '/TabSplit-V1';
 const urlsToCache = [
-  './',
-  './index.html',
-  './index.tsx',
-  './App.tsx',
-  './types.ts',
-  './utils/file.ts',
-  './services/geminiService.ts',
-  './components/icons.tsx',
-  './components/ReceiptPanel.tsx',
-  './components/ChatPanel.tsx',
-  './icon.svg',
-  './metadata.json'
+  `${BASE_PATH}/`,
+  `${BASE_PATH}/index.html`,
+  `${BASE_PATH}/icon.svg`,
+  `${BASE_PATH}/metadata.json`
 ];
 
 self.addEventListener('install', event => {

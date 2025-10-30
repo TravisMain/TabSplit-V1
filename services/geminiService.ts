@@ -2,12 +2,18 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { ReceiptData, BillSplit, ReceiptItem } from '../types';
 
-if (!process.env.API_KEY) {
-  throw new Error("API_KEY environment variable is not set");
-}
-
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+let ai: GoogleGenAI | null = null;
 const model = "gemini-2.5-flash";
+
+function getAIInstance(): GoogleGenAI {
+  if (!process.env.API_KEY) {
+    throw new Error("GEMINI_API_KEY environment variable is not set. Please add it to your .env.local file.");
+  }
+  if (!ai) {
+    ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  }
+  return ai;
+}
 
 const receiptSchema = {
   type: Type.OBJECT,
@@ -39,6 +45,7 @@ const receiptSchema = {
 export const parseReceipt = async (image: {
   inlineData: { data: string; mimeType: string };
 }): Promise<ReceiptData> => {
+  const ai = getAIInstance();
   const prompt = `
 You are an expert receipt-parsing AI. Analyze the receipt image with high precision and extract all line items, their quantities, prices, along with the subtotal, tax, tip, and total amount. Return the data in the specified JSON format.
 
@@ -109,6 +116,7 @@ export const updateBillSplit = async (
     currentSplit: BillSplit,
     userInput: string
   ): Promise<BillSplit> => {
+    const ai = getAIInstance();
 
     const prompt = `
 You are an intelligent tab-splitting assistant. Your task is to update the bill assignments based on user commands. The final response must be an array of objects, one for each person, in the specified JSON format.
