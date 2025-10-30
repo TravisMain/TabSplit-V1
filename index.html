@@ -30,6 +30,12 @@
     <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
     <script>
+      // NOTE: This is the development/source index.html. Do NOT register the
+      // service worker here because it can cache dev/source files (like
+      // index.tsx) and cause GitHub Pages users to get a broken/white page.
+      // Service worker registration is performed from the production build
+      // (dist/docs). If you need to enable it here, uncomment the block below.
+      /*
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/TabSplit-V1/sw.js').then(registration => {
@@ -39,6 +45,7 @@
           });
         });
       }
+      */
     </script>
   </body>
 </html>
